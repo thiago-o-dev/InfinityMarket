@@ -1,0 +1,6 @@
+@InfinityMarket_Api_HostAddress = http://localhost:5052
+
+GET {{InfinityMarket_Api_HostAddress}}/weatherforecast/
+Accept: application/json
+
+###

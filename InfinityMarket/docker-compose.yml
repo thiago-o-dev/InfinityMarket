@@ -1,0 +1,25 @@
+version: '3.4'
+
+services:
+  infinitymarket-api:
+    image: ${DOCKER_REGISTRY-}infinitymarketapi
+    build:
+      context: .
+      dockerfile: InfinityMarket-Api/Dockerfile
+#    depends_on:
+#      - sqlserver
+    ports:
+      - 5400:80
+      - 5401:443 
+
+#  sqlserver:
+#    image: "mcr.microsoft.com/mssql/server"
+#    environment:
+#      SA_PASSWORD: "P@ssword123"
+#      ACCEPT_EULA: "Y"
+#    volumes:
+#      - "./data-mssql:/var/opt/mssql"
+#    ports:
+#      - 5050:1433
+  
+

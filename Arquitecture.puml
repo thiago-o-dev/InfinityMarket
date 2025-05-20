@@ -1,0 +1,37 @@
+﻿@startuml ArquiteturaDeNNiveis
+allow_mixing
+left to right direction
+
+actor User
+
+package "Presentation Tier" <<Rectangle>> {
+    rectangle "Frontend\n(Website)" as Website
+}
+package "Logic Tier" <<Rectangle>> {
+    rectangle "API Gateway\nou Controlador HTTP" as APIGateway
+    rectangle "Serviço de Aplicação\n(Camada de Negócio)" as AppService
+    rectangle "Repositórios\n(DAO / ORM)" as Repository
+    rectangle "Serviços Externos\n(Auth, Pagamentos, etc.)" as ExternalServices
+}
+package "Data Tier" <<Rectangle>> {
+    package "Banco de Dados" <<Database>> {
+        database "DB Principal" as DB
+        database "Cache (Redis/Memcached)" as Cache
+        database "Fila de Mensagens\n(RabbitMQ/Kafka)" as Queue
+    }
+}
+
+
+' Fluxo principal da aplicação
+User -right--> "acessa" Website
+Website -right--> "envia requisição" APIGateway
+APIGateway -right-> "encaminha para lógica de negócio" AppService
+AppService -right-> "acessa dados" Repository
+AppService -up--> "chama API externa" ExternalServices
+
+Repository -right-> DB : consulta/grava
+' Fluxos auxiliares
+AppService -down-> Cache : consulta cache
+AppService -down-> Queue : envia mensagem
+
+@enduml

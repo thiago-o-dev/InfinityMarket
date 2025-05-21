@@ -4,16 +4,17 @@ left to right direction
 
 actor User
 
-package "Presentation Tier" <<Rectangle>> {
-    rectangle "Frontend\n(Website)" as Website
+package "Camada de Apresentação" <<Rectangle>> {
+    rectangle "Frontend\n(Website React)" as Website
 }
-package "Logic Tier" <<Rectangle>> {
+package "Camada de Aplicação" <<Rectangle>> {
     rectangle "API Gateway\nou Controlador HTTP" as APIGateway
-    rectangle "Serviço de Aplicação\n(Camada de Negócio)" as AppService
-    rectangle "Repositórios\n(DAO / ORM)" as Repository
+    rectangle "Camada de Logica\nde Serviço" as AppService
     rectangle "Serviços Externos\n(Auth, Pagamentos, etc.)" as ExternalServices
 }
-package "Data Tier" <<Rectangle>> {
+    <> separator
+package "Camada de Acesso a Dados" <<Rectangle>> {
+    rectangle "ORM" as Repository
     package "Banco de Dados" <<Database>> {
         database "DB Principal" as DB
         database "Cache (Redis/Memcached)" as Cache
@@ -23,15 +24,54 @@ package "Data Tier" <<Rectangle>> {
 
 
 ' Fluxo principal da aplicação
-User -right--> "acessa" Website
-Website -right--> "envia requisição" APIGateway
-APIGateway -right-> "encaminha para lógica de negócio" AppService
-AppService -right-> "acessa dados" Repository
-AppService -up--> "chama API externa" ExternalServices
+User "acessa" ---> Website
+Website -->  APIGateway : "envia requisição"
+APIGateway -left-> "encaminha para lógica de negócio" AppService
+AppService -left--> "chama API externa" ExternalServices
+ExternalServices --> "enttrega resposta" AppService
+
+
+AppService .. separator
+
+separator "envia pedidos de mensagem" -----> Repository
+separator "acessa dados" -----> Repository
+separator "pedidos de ação no banco" -----> Repository
 
 Repository -right-> DB : consulta/grava
 ' Fluxos auxiliares
-AppService -down-> Cache : consulta cache
-AppService -down-> Queue : envia mensagem
+Repository -down-> Cache : consulta cache
+Repository -down-> Queue : envia mensagem
+
+@enduml
+
+@startuml Secoes
+allow_mixing
+left to right direction
+
+package "Seções do nosso sistema backend" <<Rectangle>> {
+    package "Camada de Aplicação" as APP{
+        rectangle "InfinityMarket.Api" as API
+    }
+    note bottom of APP
+        Controllers
+    end note
+    package "Camada de Logica de Serviço" as LOGIC {
+        rectangle "InfinityMarket.Domain" as Domain
+    }
+    note bottom of LOGIC
+        Regras de dominio sao mantidos
+        nessa camada.
+        Basicamente, serviços internos.
+    end note
+
+    package "Camada de Acesso a Dados" as DATAACCESS{
+        rectangle "InfinityMarket.Repository" as Repo
+    }
+    note bottom of DATAACCESS
+        As models sao mantidas nessa camada.
+    end note
+}
+APP --->"\nPelos controllers vai acessar" LOGIC
+LOGIC -->"\nCom o LINQ se conectam" DATAACCESS
 
 @enduml

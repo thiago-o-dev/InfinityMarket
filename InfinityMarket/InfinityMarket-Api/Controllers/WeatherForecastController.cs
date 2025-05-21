@@ -1,6 +1,6 @@
 using Microsoft.AspNetCore.Mvc;
 
-namespace InfinityMarket_Api.Controllers
+namespace InfinityMarket.Api.Controllers
 {
     [ApiController]
     [Route("[controller]")]

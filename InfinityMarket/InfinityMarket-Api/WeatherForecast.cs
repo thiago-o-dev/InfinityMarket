@@ -1,4 +1,4 @@
-namespace InfinityMarket_Api
+namespace InfinityMarket.Api
 {
     public class WeatherForecast
     {

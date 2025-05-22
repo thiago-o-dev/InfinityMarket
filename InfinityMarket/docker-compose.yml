@@ -5,7 +5,7 @@ services:
     image: ${DOCKER_REGISTRY-}infinitymarketapi
     build:
       context: .
-      dockerfile: InfinityMarket-Api/Dockerfile
+      dockerfile: src/InfinityMarket.Api/Dockerfile
 #    depends_on:
 #      - sqlserver
     ports:

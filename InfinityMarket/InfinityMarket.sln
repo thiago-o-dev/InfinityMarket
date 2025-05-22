@@ -3,9 +3,17 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.10.35013.160
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "InfinityMarket-Api", "InfinityMarket-Api\InfinityMarket-Api.csproj", "{43332008-38A8-4AD2-9F62-86BADD922CDD}"
-EndProject
 Project("{E53339B2-1760-4266-BCC7-CA923CBCF16C}") = "docker-compose", "docker-compose.dcproj", "{20B5A894-88D0-4C05-96B9-8F9286EC56CA}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "build", "build", "{96277DC9-1E34-4FD9-BA87-E2EDCA1D446C}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "src", "src", "{A4BE619F-39EA-418F-A8F6-DEFD5842FD28}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "tests", "tests", "{AEBF768F-5D28-4FFC-AA8B-8B656D5A9CF9}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "InfinityMarket.Api", "src\InfinityMarket.Api\InfinityMarket.Api.csproj", "{6CD0629A-BD17-454B-9478-90C28410E303}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "InfinityMarket.Domain", "src\InfinityMarket.Domain\InfinityMarket.Domain.csproj", "{9D55140E-29C5-40E2-8E8F-875BA3AB62ED}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -13,17 +21,25 @@ Global
 		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{43332008-38A8-4AD2-9F62-86BADD922CDD}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{43332008-38A8-4AD2-9F62-86BADD922CDD}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{43332008-38A8-4AD2-9F62-86BADD922CDD}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{43332008-38A8-4AD2-9F62-86BADD922CDD}.Release|Any CPU.Build.0 = Release|Any CPU
 		{20B5A894-88D0-4C05-96B9-8F9286EC56CA}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{20B5A894-88D0-4C05-96B9-8F9286EC56CA}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{20B5A894-88D0-4C05-96B9-8F9286EC56CA}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{20B5A894-88D0-4C05-96B9-8F9286EC56CA}.Release|Any CPU.Build.0 = Release|Any CPU
+		{6CD0629A-BD17-454B-9478-90C28410E303}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{6CD0629A-BD17-454B-9478-90C28410E303}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{6CD0629A-BD17-454B-9478-90C28410E303}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{6CD0629A-BD17-454B-9478-90C28410E303}.Release|Any CPU.Build.0 = Release|Any CPU
+		{9D55140E-29C5-40E2-8E8F-875BA3AB62ED}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{9D55140E-29C5-40E2-8E8F-875BA3AB62ED}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{9D55140E-29C5-40E2-8E8F-875BA3AB62ED}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{9D55140E-29C5-40E2-8E8F-875BA3AB62ED}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{6CD0629A-BD17-454B-9478-90C28410E303} = {A4BE619F-39EA-418F-A8F6-DEFD5842FD28}
+		{9D55140E-29C5-40E2-8E8F-875BA3AB62ED} = {A4BE619F-39EA-418F-A8F6-DEFD5842FD28}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {6724AAAF-0E14-48D0-8334-C4E15383D92D}
